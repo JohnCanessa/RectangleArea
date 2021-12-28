@@ -7,7 +7,7 @@ and we need to compute the total area covered by the two rectangles.
 
 If interested in my commnts I invite you to read the following post in my blog:
 
-<T.B.D.>
+https://www.johncanessa.com/2021/12/28/leetcode-223-rectangle-area-in-java/
 
 Keep on reading and experimenting, it is one of the best ways to learn.
 
