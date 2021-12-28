@@ -70,7 +70,7 @@ public class RectangleArea {
      * Runtime: 2 ms
      * Memory Usage: 38.1 MB
      */
-    static public int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+    static public int computeArea1(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
         
         // **** initialization ****        
         int area1   = (ax2 - ax1) * (ay2 - ay1);
@@ -85,6 +85,53 @@ public class RectangleArea {
         return area1 + area2 - 
                     Math.max(Math.min(ax2, bx2) - Math.max(ax1, bx1), 0) *
                     Math.max(Math.min(ay2, by2) - Math.max(ay1, by1), 0);
+    }
+
+
+
+
+
+
+    /**
+     * Given the coordinates of two rectilinear rectangles in a 2D plane,
+     * return the total area covered by the two rectangles.
+     * 
+     * Execution: O(1) - Space: O(1)
+     * 
+     */
+    static public int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+        
+        // **** initialization ****        
+        int area1   = (ax2 - ax1) * (ay2 - ay1);
+        int area2   = (bx2 - bx1) * (by2 - by1);
+        
+        // **** rectangles do not overlap ****
+        if ((ay1 >= by2 || by1 >= ay2) ||
+            (ax2 <= bx1 || bx2 <= ax1))
+            return area1 + area2;
+
+        // **** rectangles overlap ****
+        return area1 + area2 - 
+                    max(min(ax2, bx2) - max(ax1, bx1), 0) *
+                    max(min(ay2, by2) - max(ay1, by1), 0);
+    }
+
+
+    /**
+     * Auxiliary function to compute max.
+     */
+    static private int max(int a, int b) {
+        if (a >= b) return a;
+        return b;
+    }
+
+
+    /**
+     * Auxiliary function to compute min.
+     */
+    static private int min(int a, int b) {
+        if (a <= b) return a;
+        return b;
     }
 
 
@@ -117,6 +164,9 @@ public class RectangleArea {
 
         // **** call function of interest and display result ****
         System.out.println("main <<< computeArea0: " + computeArea0(r1[0], r1[1], r1[2], r1[3], r2[0], r2[1], r2[2], r2[3]));
+
+        // **** call function of interest and display result ****
+        System.out.println("main <<< computeArea0: " + computeArea1(r1[0], r1[1], r1[2], r1[3], r2[0], r2[1], r2[2], r2[3]));
 
         // **** call function of interest and display result ****
         System.out.println("main <<<  computeArea: " + computeArea(r1[0], r1[1], r1[2], r1[3], r2[0], r2[1], r2[2], r2[3]));
